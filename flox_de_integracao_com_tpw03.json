@@ -1,0 +1,725 @@
+[
+    {
+        "id": "dc7050813809feb8",
+        "type": "tab",
+        "label": "Fluxo 2",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1ee1ca19e5c94de4",
+        "type": "modbus-read",
+        "z": "dc7050813809feb8",
+        "name": "leitura_p_gra",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "17207",
+        "quantity": "5",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "8e6e3160fcddd60e",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 390,
+        "y": 160,
+        "wires": [
+            [
+                "80a1ac5e6499cbb7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "03ef56faccbb4e82",
+        "type": "modbus-read",
+        "z": "dc7050813809feb8",
+        "name": "leitura_p_med",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "17208",
+        "quantity": "5",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "8e6e3160fcddd60e",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 390,
+        "y": 360,
+        "wires": [
+            [
+                "fe370363c1ae540f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2940433afaccdb1b",
+        "type": "modbus-read",
+        "z": "dc7050813809feb8",
+        "name": "leitura_p_peq",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "17209",
+        "quantity": "5",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "8e6e3160fcddd60e",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 390,
+        "y": 560,
+        "wires": [
+            [
+                "c42409ff74b755e9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "80a1ac5e6499cbb7",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "contab_p_gra",
+        "func": "let lastPayload = context.get('lastPayload') || 0;\n\n// Captura o novo valor do payload\nlet currentPayload = msg.payload[1];\n\n// Compara o valor atual com o anterior\nif (lastPayload !== currentPayload) {\n    context.set('lastPayload', currentPayload); // Atualiza o valor armazenado\n    msg.payload = {\n        valor: currentPayload, // O valor atualizado do payload\n        descricao1: \"Metálica Grande\", // Primeiro texto adicional\n        descricao2: \"separação tipo 3\" // Segundo texto adicional\n    };\n    return msg; // Retorna a mensagem se o valor for diferente\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 160,
+        "wires": [
+            [
+                "e77da336a4b675ee",
+                "3453dac609d06c69"
+            ]
+        ]
+    },
+    {
+        "id": "9d41f1b4ba9e6889",
+        "type": "modbus-read",
+        "z": "dc7050813809feb8",
+        "name": "leitura_p_plast",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "17210",
+        "quantity": "5",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "8e6e3160fcddd60e",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 400,
+        "y": 740,
+        "wires": [
+            [
+                "24ad644ddc21e277"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fe370363c1ae540f",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "contab_p_med",
+        "func": "let lastPayload = context.get('lastPayload') || 0;\n\n// Captura o novo valor do payload\nlet currentPayload = msg.payload[1];\n\n// Compara o valor atual com o anterior\nif (lastPayload !== currentPayload) {\n    context.set('lastPayload', currentPayload); // Atualiza o valor armazenado\n    msg.payload = {\n        valor: currentPayload, // O valor atualizado do payload\n        descricao1: \"Metálica Media\", // Primeiro texto adicional\n        descricao2: \"separação tipo 2\" // Segundo texto adicional\n    };\n    return msg; // Retorna a mensagem se o valor for diferente\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 360,
+        "wires": [
+            [
+                "d11f97150bde9dcd",
+                "bb812fc147ce5f37"
+            ]
+        ]
+    },
+    {
+        "id": "c42409ff74b755e9",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "contab_p_peq",
+        "func": "let lastPayload = context.get('lastPayload') || 0;\n\n// Captura o novo valor do payload\nlet currentPayload = msg.payload[1];\n\n// Compara o valor atual com o anterior\nif (lastPayload !== currentPayload) {\n    context.set('lastPayload', currentPayload); // Atualiza o valor armazenado\n    msg.payload = {\n        valor: currentPayload, // O valor atualizado do payload\n        descricao1: \"Metálica Pequena\", // Primeiro texto adicional\n        descricao2: \"separação tipo 1\" // Segundo texto adicional\n    };\n    return msg; // Retorna a mensagem se o valor for diferente\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 560,
+        "wires": [
+            [
+                "1e2385eeec878c30",
+                "4ccbded53fa3a4fe"
+            ]
+        ]
+    },
+    {
+        "id": "24ad644ddc21e277",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "contab_p_plas",
+        "func": "let lastPayload = context.get('lastPayload') || 0;\n\n// Captura o novo valor do payload\nlet currentPayload = msg.payload[1];\n\n// Compara o valor atual com o anterior\nif (lastPayload !== currentPayload) {\n    context.set('lastPayload', currentPayload); // Atualiza o valor armazenado\n    msg.payload = {\n        valor: currentPayload, // O valor atualizado do payload\n        descricao1: \"Não Metálica\", // Primeiro texto adicional\n        descricao2: \"Direcionada para outro fluxo\" // Segundo texto adicional\n    };\n    return msg; // Retorna a mensagem se o valor for diferente\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 740,
+        "wires": [
+            [
+                "77863c21083e65dd"
+            ]
+        ]
+    },
+    {
+        "id": "3453dac609d06c69",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "sendDateTime",
+        "func": "msg.payload = Date.now();\n    return msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 80,
+        "wires": [
+            [
+                "1ba35d72e7f9d4b0"
+            ]
+        ]
+    },
+    {
+        "id": "029f078b01d85269",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "dateTime",
+        "func": "msg.topic = \"dateTime\";\n// Converte o objeto msg em uma string JSON\nlet data = JSON.stringify(msg);\n\n// Extrai a data e o horário no formato ISO 8601\nlet match = data.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/);\n\nif (match) {\n    // Divide a string da data e horário em partes separadas\n    let [date, time] = match[0].split('T');\n\n    // Define a data e o horário no payload\n    msg.payload = {\n        date: date,  \n        time: time   \n    };\n\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 80,
+        "wires": [
+            [
+                "e77da336a4b675ee"
+            ]
+        ]
+    },
+    {
+        "id": "233abe52e33bc614",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "monta_insert_peca_g",
+        "func": "// Verifica se todos os dados necessários estão presentes\nif (msg.payload.polling && msg.payload.polling.valor && msg.payload.polling.descricao1 && msg.payload.polling.descricao2 && msg.payload.dateTime && msg.payload.dateTime.date && msg.payload.dateTime.time) {\n    // Define os valores extraídos do payload\n    let id_contagem = msg.payload.polling.valor;           // O valor do contador\n    let data_fabricacao = msg.payload.dateTime.date;        // A data extraída\n    let tipo = msg.payload.polling.descricao1;             // O tipo da peça\n    let descricao = msg.payload.polling.descricao2;        // A descrição da peça\n    let tempo_ciclo = msg.payload.dateTime.time;            // O tempo de ciclo\n    let peca3_status = 1;                          // O status inicial \n\n    // Monta o comando INSERT com os dados extraídos\n    let insertQuery = `INSERT INTO peca_metalica_3 (id_contagem, data_fabricacao, tipo, descricao, tempo_ciclo, peca3_status) \nVALUES (${id_contagem}, '${data_fabricacao}', '${tipo}', '${descricao}', '${tempo_ciclo}', '${peca3_status}');`;\n\n    // Retorna o comando SQL no payload\n    msg.topic = insertQuery;\n    return msg;\n} else {\n    // Caso falte algum dado, retorna um erro ou null\n    node.error(\"Dados incompletos no payload.\", msg);\n    return null; // Caso não tenha dados suficientes\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 160,
+        "wires": [
+            [
+                "0f38f82395dfc02a"
+            ]
+        ]
+    },
+    {
+        "id": "0f38f82395dfc02a",
+        "type": "mysql",
+        "z": "dc7050813809feb8",
+        "mydb": "944d93f5008df393",
+        "name": "banco_projeto",
+        "x": 1380,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e77da336a4b675ee",
+        "type": "join",
+        "z": "dc7050813809feb8",
+        "name": "combina_conteudos",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 860,
+        "y": 160,
+        "wires": [
+            [
+                "233abe52e33bc614"
+            ]
+        ]
+    },
+    {
+        "id": "bb812fc147ce5f37",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "sendDateTime",
+        "func": "msg.payload = Date.now();\n    return msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 260,
+        "wires": [
+            [
+                "59240c2c7e98239b"
+            ]
+        ]
+    },
+    {
+        "id": "59240c2c7e98239b",
+        "type": "moment",
+        "z": "dc7050813809feb8",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Sao_Paulo",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "",
+        "locale": "pt-BR",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Sao_Paulo",
+        "x": 680,
+        "y": 260,
+        "wires": [
+            [
+                "2db34837e656849e"
+            ]
+        ]
+    },
+    {
+        "id": "2db34837e656849e",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "dateTime",
+        "func": "msg.topic = \"dateTime\";\n// Converte o objeto msg em uma string JSON\nlet data = JSON.stringify(msg);\n\n// Extrai a data e o horário no formato ISO 8601\nlet match = data.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/);\n\nif (match) {\n    // Divide a string da data e horário em partes separadas\n    let [date, time] = match[0].split('T');\n\n    // Define a data e o horário no payload\n    msg.payload = {\n        date: date,  \n        time: time   \n    };\n\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 260,
+        "wires": [
+            [
+                "d11f97150bde9dcd"
+            ]
+        ]
+    },
+    {
+        "id": "d11f97150bde9dcd",
+        "type": "join",
+        "z": "dc7050813809feb8",
+        "name": "combina_conteudos",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 860,
+        "y": 360,
+        "wires": [
+            [
+                "e376372650148107"
+            ]
+        ]
+    },
+    {
+        "id": "e376372650148107",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "monta_insert_peca_m",
+        "func": "// Verifica se todos os dados necessários estão presentes\nif (msg.payload.polling && msg.payload.polling.valor && msg.payload.polling.descricao1 && msg.payload.polling.descricao2 && msg.payload.dateTime && msg.payload.dateTime.date && msg.payload.dateTime.time) {\n    // Define os valores extraídos do payload\n    let id_contagem = msg.payload.polling.valor;           // O valor do contador\n    let data_fabricacao = msg.payload.dateTime.date;        // A data extraída\n    let tipo = msg.payload.polling.descricao1;             // O tipo da peça\n    let descricao = msg.payload.polling.descricao2;        // A descrição da peça\n    let tempo_ciclo = msg.payload.dateTime.time;            // O tempo de ciclo\n    let peca2_status = 1;                                  // O status inicial \n\n    // Monta o comando INSERT com os dados extraídos\n    let insertQuery = `INSERT INTO peca_metalica_2 (id_contagem, data_fabricacao, tipo, descricao, tempo_ciclo, peca2_status) \nVALUES (${id_contagem}, '${data_fabricacao}', '${tipo}', '${descricao}', '${tempo_ciclo}', '${peca2_status}');`;\n\n    // Retorna o comando SQL no payload\n    msg.topic = insertQuery;\n    return msg;\n} else {\n    // Caso falte algum dado, retorna um erro ou null\n    node.error(\"Dados incompletos no payload.\", msg);\n    return null; // Caso não tenha dados suficientes\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 360,
+        "wires": [
+            [
+                "0f38f82395dfc02a"
+            ]
+        ]
+    },
+    {
+        "id": "1e2385eeec878c30",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "sendDateTime",
+        "func": "msg.payload = Date.now();\n    return msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "2a7e6ba28122fc23"
+            ]
+        ]
+    },
+    {
+        "id": "2a7e6ba28122fc23",
+        "type": "moment",
+        "z": "dc7050813809feb8",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Sao_Paulo",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "",
+        "locale": "pt-BR",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Sao_Paulo",
+        "x": 680,
+        "y": 480,
+        "wires": [
+            [
+                "f347c7941a20471f"
+            ]
+        ]
+    },
+    {
+        "id": "f347c7941a20471f",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "dateTime",
+        "func": "msg.topic = \"dateTime\";\n// Converte o objeto msg em uma string JSON\nlet data = JSON.stringify(msg);\n\n// Extrai a data e o horário no formato ISO 8601\nlet match = data.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/);\n\nif (match) {\n    // Divide a string da data e horário em partes separadas\n    let [date, time] = match[0].split('T');\n\n    // Define a data e o horário no payload\n    msg.payload = {\n        date: date,  \n        time: time   \n    };\n\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 480,
+        "wires": [
+            [
+                "4ccbded53fa3a4fe"
+            ]
+        ]
+    },
+    {
+        "id": "4ccbded53fa3a4fe",
+        "type": "join",
+        "z": "dc7050813809feb8",
+        "name": "combina_conteudos",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 860,
+        "y": 560,
+        "wires": [
+            [
+                "798c8fab99f113e2"
+            ]
+        ]
+    },
+    {
+        "id": "798c8fab99f113e2",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "monta_insert_peca_p",
+        "func": "// Verifica se todos os dados necessários estão presentes\nif (msg.payload.polling && msg.payload.polling.valor && msg.payload.polling.descricao1 && msg.payload.polling.descricao2 && msg.payload.dateTime && msg.payload.dateTime.date && msg.payload.dateTime.time) {\n    // Define os valores extraídos do payload\n    let id_contagem = msg.payload.polling.valor;           // O valor do contador\n    let data_fabricacao = msg.payload.dateTime.date;        // A data extraída\n    let tipo = msg.payload.polling.descricao1;             // O tipo da peça\n    let descricao = msg.payload.polling.descricao2;        // A descrição da peça\n    let tempo_ciclo = msg.payload.dateTime.time;            // O tempo de ciclo\n    let peca1_status = 1;                                  // O status inicial \n\n    // Monta o comando INSERT com os dados extraídos\n    let insertQuery = `INSERT INTO peca_metalica_1 (id_contagem, data_fabricacao, tipo, descricao, tempo_ciclo, peca1_status) \nVALUES (${id_contagem}, '${data_fabricacao}', '${tipo}', '${descricao}', '${tempo_ciclo}', '${peca1_status}');`;\n\n    // Retorna o comando SQL no payload\n    msg.topic = insertQuery;\n    return msg;\n} else {\n    // Caso falte algum dado, retorna um erro ou null\n    node.error(\"Dados incompletos no payload.\", msg);\n    return null; // Caso não tenha dados suficientes\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 560,
+        "wires": [
+            [
+                "0f38f82395dfc02a"
+            ]
+        ]
+    },
+    {
+        "id": "1ba35d72e7f9d4b0",
+        "type": "moment",
+        "z": "dc7050813809feb8",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Sao_Paulo",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "",
+        "locale": "pt-BR",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Sao_Paulo",
+        "x": 680,
+        "y": 80,
+        "wires": [
+            [
+                "029f078b01d85269"
+            ]
+        ]
+    },
+    {
+        "id": "77863c21083e65dd",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "sendDateTime",
+        "func": "msg.payload = Date.now();\n    return msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 660,
+        "wires": [
+            [
+                "ffe2802b1125bdd4"
+            ]
+        ]
+    },
+    {
+        "id": "ffe2802b1125bdd4",
+        "type": "moment",
+        "z": "dc7050813809feb8",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Sao_Paulo",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "",
+        "locale": "pt-BR",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Sao_Paulo",
+        "x": 680,
+        "y": 660,
+        "wires": [
+            [
+                "a3fb9bddd5f29f90"
+            ]
+        ]
+    },
+    {
+        "id": "a3fb9bddd5f29f90",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "dateTime",
+        "func": "msg.topic = \"dateTime\";\n// Converte o objeto msg em uma string JSON\nlet data = JSON.stringify(msg);\n\n// Extrai a data e o horário no formato ISO 8601\nlet match = data.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/);\n\nif (match) {\n    // Divide a string da data e horário em partes separadas\n    let [date, time] = match[0].split('T');\n\n    // Define a data e o horário no payload\n    msg.payload = {\n        date: date,  \n        time: time   \n    };\n\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 660,
+        "wires": [
+            [
+                "b4c1746f4006bf72"
+            ]
+        ]
+    },
+    {
+        "id": "b4c1746f4006bf72",
+        "type": "join",
+        "z": "dc7050813809feb8",
+        "name": "combina_conteudos",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 900,
+        "y": 740,
+        "wires": [
+            [
+                "9a7522e858b53de3"
+            ]
+        ]
+    },
+    {
+        "id": "9a7522e858b53de3",
+        "type": "function",
+        "z": "dc7050813809feb8",
+        "name": "monta_insert_peca_n_metal",
+        "func": "// Verifica se todos os dados necessários estão presentes\nif (msg.payload.polling && msg.payload.polling.valor && msg.payload.polling.descricao1 && msg.payload.polling.descricao2 && msg.payload.dateTime && msg.payload.dateTime.date && msg.payload.dateTime.time) {\n    // Define os valores extraídos do payload\n    let id_contagem = msg.payload.polling.valor;           // O valor do contador\n    let data_fabricacao = msg.payload.dateTime.date;        // A data extraída\n    let tipo = msg.payload.polling.descricao1;             // O tipo da peça\n    let descricao = msg.payload.polling.descricao2;        // A descrição da peça\n    let tempo_ciclo = msg.payload.dateTime.time;            // O tempo de ciclo\n    let peca_status = 1;                                  // O status inicial \n\n    // Monta o comando INSERT com os dados extraídos\n    let insertQuery = `INSERT INTO peca_nao_metalica (id_contagem, data_fabricacao, tipo, descricao, tempo_ciclo, peca_status) \nVALUES (${id_contagem}, '${data_fabricacao}', '${tipo}', '${descricao}', '${tempo_ciclo}', '${peca_status}');`;\n\n    // Retorna o comando SQL no payload\n    msg.topic = insertQuery;\n    return msg;\n} else {\n    // Caso falte algum dado, retorna um erro ou null\n    node.error(\"Dados incompletos no payload.\", msg);\n    return null; // Caso não tenha dados suficientes\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 740,
+        "wires": [
+            [
+                "0f38f82395dfc02a"
+            ]
+        ]
+    },
+    {
+        "id": "8e6e3160fcddd60e",
+        "type": "modbus-client",
+        "name": "Node-RED Modbus Serial Master",
+        "clienttype": "serial",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "COM5",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "2",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "1000",
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "944d93f5008df393",
+        "type": "MySQLdatabase",
+        "name": "Banco_Projeto",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "banco_proj",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]
