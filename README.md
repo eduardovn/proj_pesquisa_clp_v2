@@ -1,10 +1,10 @@
-# Projeto em Ladder Node-RED, Script MySQL e Power BI
+# Projeto em Diagrama Ladder, Node-RED, script MySQL e Power BI
  
 Arquivos utlizados para prova de conceito em abordagem de integração CLP
   
 - Para testar o projeto utilize:
  IDE TPW-PCLINK (Diagrama Ladder) 
- Node-red
+ node-RED
  MySQL (banco de dados)
  Power Bi
 
